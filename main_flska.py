@@ -1,6 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from main import parce
-import requests
+
 
 app = Flask(__name__)
 
@@ -23,12 +23,12 @@ def contacts():
 
 @app.route('/result/')
 def results():
-    vac = requests.forma
+    vac = request.form
     data = parce(**vac)
     dat = {**data, **vac}
     print(dat)
     return render_template('contacts.html', res=dat)
-)
+
 
 
 
