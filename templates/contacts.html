@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Результаты поиска</title>
+</head>
+<body>
+    <a href="/forma/">Назад к форме поиска</a>
+    <hr>
+    <h3>Параметры</h3>
+    <ol>
+        <li>Вакансия: {{res['vacancy']}}</li>
+        <li>Условия: {{res['where']}}</li>
+        <li>Ср. верхняя граница: {{res['up']}}руб.</li>
+        <li>Ср. нижняя граница: {{res['down']}}руб.</li>
+    </ol>
+    <table>
+        <thead>
+            <tr>
+                <th>Номер</th>
+                <th>Название</th>
+                <th>Процент упоминаний</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in res['requirements'] %}
+                <tr>
+                    <th scope="row">{{loop.index}}</th>
+                    <td>{{item['name'].capitalize()}}</td>
+                    <td align="right">{{item['percent']}}%</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+</body>
+</html>

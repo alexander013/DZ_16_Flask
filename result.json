@@ -1,0 +1,31 @@
+{
+    "keywords": "java",
+    "count": 80,
+    "requirements": [
+        {
+            "name": "java",
+            "count": 60,
+            "percent": 75.0
+        },
+        {
+            "name": "sql",
+            "count": 38,
+            "percent": 47.5
+        },
+        {
+            "name": "spring framework",
+            "count": 33,
+            "percent": 41.25
+        },
+        {
+            "name": "git",
+            "count": 31,
+            "percent": 38.75
+        },
+        {
+            "name": "postgresql",
+            "count": 28,
+            "percent": 35.0
+        }
+    ]
+}

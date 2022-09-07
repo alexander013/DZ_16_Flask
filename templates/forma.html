@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница формы поиска</title>
+</head>
+<body>
+    <header>
+        <h1>
+            <span>Форма для поиска</span>
+        </h1>
+    </header>
+    <ul>
+        <li>
+            <a href="/">Главная</a>
+        </li>
+        <li>
+            <a href="/result/">Результат поиска</a>
+        </li>
+        <li>
+            <a href="/forma/">Страница формы поиска</a>
+        </li>
+    </ul>
+     <div>
+        <form action="/result" method="post">
+            <div>
+                <label for="vacancy">Текст поиска</label>
+                <input type="text" name="vacancy" placeholder="Строка поиска" id="vacancy">
+                <label for="wh">Где искать</label>
+                <select>
+                    <option>Везде</option>
+                    <option>В названии компании</option>
+                    <option>В названии вакансии</option>
+                </select>
+                <label for="p">Количество анализируемых страниц</label>
+                <input type="number" name="pages" value="3" id="p">
+                <input type="submit" value="Искать вакансию">
+            </div>
+        </form>
+     </div>
+
+
+</body>
+</html>
