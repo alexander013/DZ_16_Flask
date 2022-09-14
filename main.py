@@ -9,6 +9,7 @@ from pycbrf import ExchangeRates
 import sqlite3
 from sqlite3 import connect
 import requests
+from BAZA_18 import Session, Area
 
 def parce(vacancy, pages='3', where='all'):
     """
@@ -44,15 +45,21 @@ def parce(vacancy, pages='3', where='all'):
             # pprint(res)
             skills = set()
             city_vac = res['area']['name']
-            con = connect('base.sqlite')
-            cur = con.cursor()
-            # проверка наличия города в таблице
-            rest = cur.execute('select id from area where area.name = ?', (city_vac,)).fetchone()
+            # con = connect('base.sqlite')
+            # cur = con.cursor()
+            # # проверка наличия города в таблице
+            # rest = cur.execute('select id from area where area.name = ?', (city_vac,)).fetchone()
+
+            # создание сеанса
+            session = Session()
+            rest = session.query(Area).filter_by(nmae=city_vac).one_or_one()
             if not rest:
                 # добавление строки в таблицу регионов.
-                cur.execute('insert into area values (null, ?, ?)', (city_vac, res['area']['id']))
-                con.commit()
-            con.close()
+                # cur.execute('insert into area values (null, ?, ?)', (city_vac, res['area']['id']))
+                # con.commit()
+                session.add(Area(name=city_vac, ind=res['area']['id']))
+                session.commit()
+            session.close()
             ar = res['area']
             res_full = requests.get(res['url']).json()
             # pprint(res_full)

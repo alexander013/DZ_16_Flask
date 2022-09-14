@@ -1,7 +1,5 @@
 from sqlite3 import connect
 
-# Создание баз данных в файле. Если таблицы уже созданы, то его исполнять не нужно
-
 cur = connect('base.sqlite').cursor()
 
 cur.executescript('''
