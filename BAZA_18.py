@@ -3,9 +3,11 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # создание базы
-engine = create_engine('sqlite:///dz18.sqlite', echo=True)
+engine = create_engine('sqlite:///dz18.sqlite')
 
 Base = declarative_base()
+
+
 
 # wordskills = Table('wordskills', Base.metadata,
 #                     Column('id', Integer, primary_key=True),

@@ -52,7 +52,7 @@ def parce(vacancy, pages='3', where='all'):
 
             # создание сеанса
             session = Session()
-            rest = session.query(Area).filter_by(nmae=city_vac).one_or_one()
+            rest = session.query(Area).filter_by(name=city_vac)
             if not rest:
                 # добавление строки в таблицу регионов.
                 # cur.execute('insert into area values (null, ?, ?)', (city_vac, res['area']['id']))
