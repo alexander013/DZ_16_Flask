@@ -42,25 +42,27 @@ def parce(vacancy, pages='3', where='all'):
         all_count = len(ress['items'])
         result['count'] += all_count
         for res in ress['items']:
-            # pprint(res)
+            # pprint.pprint(res)
             skills = set()
             city_vac = res['area']['name']
+            # print(city_vac)
             # con = connect('base.sqlite')
             # cur = con.cursor()
             # # проверка наличия города в таблице
             # rest = cur.execute('select id from area where area.name = ?', (city_vac,)).fetchone()
-
             # создание сеанса
             session = Session()
-            rest = session.query(Area).filter_by(name=city_vac)
+            rest = session.query(Area).filter_by(name=city_vac).one_or_none()
             if not rest:
                 # добавление строки в таблицу регионов.
                 # cur.execute('insert into area values (null, ?, ?)', (city_vac, res['area']['id']))
                 # con.commit()
                 session.add(Area(name=city_vac, ind=res['area']['id']))
+                print(res['area']['id'])
                 session.commit()
             session.close()
             ar = res['area']
+            # print(ar)
             res_full = requests.get(res['url']).json()
             # pprint(res_full)
             pp = res_full['description']
@@ -101,3 +103,5 @@ def parce(vacancy, pages='3', where='all'):
 if __name__ == '__main__':
     vacancy = input('Введите интересующую вакансию: ')
     pprint(parce(vacancy))
+
+

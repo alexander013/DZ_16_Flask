@@ -28,7 +28,7 @@ def result():
     dat = {**data, **vac}  # data | vac - в Python 3.10 можно сделать так
     # print('orktgh0r9e-kher0h' , dat)
     # dat['where'] = 'в названии вакансии' if dat['where'] == 'name' else 'в названии компании' if dat['where'] == 'company' else 'везде'
-    # add_row(dat)
+    add_row(dat)
     return render_template('contacts.html', res=dat)
 
 

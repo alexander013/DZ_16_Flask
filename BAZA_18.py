@@ -5,7 +5,8 @@ from sqlalchemy.orm import sessionmaker
 # создание базы
 engine = create_engine('sqlite:///dz18.sqlite')
 
-Base = declarative_base()
+Base = declarative_base(bind=engine)
+Session = sessionmaker()
 
 
 
@@ -33,15 +34,20 @@ class Wordskill(Base):
 class Area(Base):
     __tablename__ = 'area'
     id = Column(Integer, primary_key=True)
-    name = Column(String)
+    name = Column(String, unique=True, index=True)
     ind = Column(Integer)
 
-    def __init__(self, name, ind):
-        self.name = name
-        self.ind = ind
-
+    # def __init__(self, name, ind):
+    #     self.name = name
+    #     self.ind = ind
+    #
+    # def __str__(self):
+    #     return f'{self.id}) {self.name}: {self.ind}'
     def __str__(self):
-        return f'{self.id}) {self.name}: {self.ind}'
+        return f'{self.id}) {self.name} | {self.ind} |'
+
+    def __repr__(self):
+        return f'{self.id} - {self.name} - {self.ind}'
 
 class Skills(Base):
     __tablename__ = 'skills'
@@ -73,9 +79,9 @@ class Words(Base):
 
 
 # создание таблицы
-Base.metadata.create_all(engine)
-# заполнение таблиц
-Session = sessionmaker(bind=engine)
-# создание сеанса
-session = Session()
+Base.metadata.create_all()
+# # заполнение таблиц
+# Session = sessionmaker(bind=engine)
+# # создание сеанса
+# session = Session()
 
